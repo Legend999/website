@@ -1,65 +1,142 @@
 body {
-    overflow: hidden;
+    background: rgb(6, 49, 107);
+    color: aliceblue;
+    font-family: KoHo;
 }
 
-.container {
-    margin-top: 10vh;
+.header {
+    height: 10vh;
+    z-index: 2000;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0%;
 }
 
-#fade {
+.searchbox {
+    margin-bottom: 5%;
+    z-index: 2000;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 5%;
+}
+
+#fade-foot,
+#fade-head {
     position: fixed;
-    bottom: 0;
     width: 100%;
-    height: 40vh;
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.9) 100%);
+}
+
+#fade-head {
+    height: 15%;
+    background: -webkit-linear-gradient(rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
     background-image: -moz-linear-gradient(
             /*firefox*/
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.9) 100%);
+            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
     background-image: -o-linear-gradient(
-            /*opera browser*/
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.9) 100%);
-    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.9) 100%);
+            /*opera*/
+            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background-image: linear-gradient(rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
     background-image: -ms-linear-gradient(
             /*microsoft ie*/
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.9) 100%);
+            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+}
+
+#fade-foot {
+    bottom: 0;
+    height: 40vh;
+    background: -webkit-linear-gradient(rgba(6, 2, 69, 0) 0%,
+            rgba(6, 2, 69, 0.9) 100%);
+    background-image: -moz-linear-gradient(
+            /*firefox*/
+            rgba(6, 2, 69, 0) 0%,
+            rgba(6, 2, 69, 0.9) 100%);
+    background-image: -o-linear-gradient(
+            /*opera browser*/
+            rgba(6, 2, 69, 0) 0%,
+            rgba(6, 2, 69, 0.9) 100%);
+    background-image: linear-gradient(rgba(6, 2, 69, 0) 0%,
+            rgba(6, 2, 69, 0.9) 100%);
+    background-image: -ms-linear-gradient(
+            /*microsoft ie*/
+            rgba(6, 2, 69, 0) 0%,
+            rgba(6, 2, 69, 0.9) 100%);
 }
 
 .ROW {
     border: 1px gray solid;
-    border-radius: 6px 28px 6px 28px;
-    margin-top: 10px;
+    margin-top: 1vh;
     overflow: hidden;
     font-size: 1.8em;
     text-align: center;
+    height: 10vh;
 }
 
 .pol {
     background: left no-repeat;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 1)), url("https://flagcdn.com/120x90/pl.png");
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(6, 49, 107, 1)), url("https://flagcdn.com/120x90/pl.png");
     background-size: 35% 120%;
-    background-position-x: -11%;
-    padding-bottom: 2%;
-    padding-top: 2%;
+    background-position-x: -15%;
 }
 
 .eng {
     border-left: 1px gray solid;
     background: right no-repeat;
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1)), url("https://flagcdn.com/120x90/gb.png");
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.3), rgba(6, 49, 107, 0.9)), url("https://flagcdn.com/120x90/gb.png");
     background-size: 35% 120%;
     background-position-x: 111%;
-    padding-bottom: 2%;
-    padding-top: 2%;
 }
 
-#u1 {
+.u1 {
     font-size: 2.4em;
     border: 2px red solid;
     width: 104%;
     margin-left: -2%;
+    border-radius: 6px 28px 6px 28px;
+}
+
+/*animations*/
+.go-up
+{
+    animation: moveUp 0.5s ease-out 0s 1 normal forwards;
+}
+
+.go-down
+{
+    animation: moveDown 0.5s ease-out 0s 1 normal forwards;
+}
+
+@keyframes moveDown {
+    0.0%{
+    }
+    100%{
+        transform: translate(0, 11vh);
+    }
+}
+@keyframes moveUp {
+    0.0%{
+    }
+    100%{
+        transform: translate(0, -11vh);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    /*border: 1px solid #2575aa;*/
+    /*border-radius: 10px;*/
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    /*background: yellowgreen;*/
+    background: linear-gradient(125deg, #34495e, #2575aa, #34495e);
+    /*border-radius: 10px;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(125deg, #2575aa, #34495e, #2575aa);
 }
