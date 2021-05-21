@@ -97,12 +97,12 @@ body {
 /*animations*/
 .go-up
 {
-    animation: moveUp 0.24s linear 0s 1 normal forwards;
+    animation: moveUp 0.15s linear 0s 1 normal forwards;
 }
 
 .go-down
 {
-    animation: moveDown 0.24s linear 0s 1 normal forwards;
+    animation: moveDown 0.15s linear 0s 1 normal forwards;
 }
 
 @keyframes moveDown {

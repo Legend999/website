@@ -47,33 +47,28 @@ $(document).ready(function () {
         typingTimer = setTimeout(doneTyping, doneTypingInterval);
     });
 
-    function doneTyping() {
+    async function doneTyping() {
         var pattern = $('#search').val();
         const fuse = new Fuse(list, options);
         var result = fuse.search(pattern);
 
-        for (var i = 0; i < 1; ++i) {
+        for (var i = 0; i < Math.min(10,result.length); ++i) {
             let j;
             for (j = 0; list[j]['id'] != result[i]['item']['id']; ++j);
-            var FOR = window.setInterval(function () {
-                if (j == 0) {
-                    clearInterval(FOR);
-                    return;
-                }
+            while (j > i) {
                 $(".u" + (list[j]['value'])).addClass("go-down");
                 $(".u" + (list[j + 1]['value'])).addClass("go-up");
-                setTimeout(function () {
-                    var tmp = $(".u" + list[j + 2]['value']).html();
-                    $(".u" + list[j + 2]['value']).html($(".u" + list[j + 1]['value']).html());
-                    $(".u" + list[j + 1]['value']).html(tmp);
-                    $(".u" + list[j + 1]['value']).removeClass("go-down");
-                    $(".u" + list[j + 2]['value']).removeClass("go-up");
-                    [list[j], list[j + 1]] = [list[j + 1], list[j]];
-                    [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
-                    console.log(list);
-                }, 300);
+                await new Promise(r => setTimeout(r, 150));
                 --j;
-            }, 310)
+                var tmp = $(".u" + list[j + 2]['value']).html();
+                $(".u" + list[j + 2]['value']).html($(".u" + list[j + 1]['value']).html());
+                $(".u" + list[j + 1]['value']).html(tmp);
+                $(".u" + list[j + 1]['value']).removeClass("go-down");
+                $(".u" + list[j + 2]['value']).removeClass("go-up");
+                [list[j], list[j + 1]] = [list[j + 1], list[j]];
+                [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
+                console.log(list);
+            }
         }
     }
 });
