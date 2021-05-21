@@ -20,6 +20,10 @@ body {
     top: 5%;
 }
 
+#search {
+    border-radius: 6px 28px 6px 28px;
+}
+
 #fade-foot,
 #fade-head {
     position: fixed;
@@ -60,6 +64,7 @@ body {
             /*microsoft ie*/
             rgba(6, 2, 69, 0) 0%,
             rgba(6, 2, 69, 0.9) 100%);
+    pointer-events: none
 }
 
 .ROW {
@@ -69,6 +74,10 @@ body {
     font-size: 1.8em;
     text-align: center;
     height: 10vh;
+}
+
+.ROW:hover {
+    height: 20vh;
 }
 
 .pol {
@@ -84,6 +93,7 @@ body {
     background-image: linear-gradient(to left, rgba(255, 255, 255, 0.3), rgba(6, 49, 107, 0.9)), url("https://flagcdn.com/120x90/gb.png");
     background-size: 35% 120%;
     background-position-x: 111%;
+    color: yellow;
 }
 
 .u1 {
@@ -95,27 +105,50 @@ body {
 }
 
 /*animations*/
-.go-up
-{
-    animation: moveUp 0.15s linear 0s 1 normal forwards;
+.go-up {
+    animation: moveUp 0.04s linear 0s 1 normal forwards;
 }
 
-.go-down
-{
-    animation: moveDown 0.15s linear 0s 1 normal forwards;
+.go-down {
+    animation: moveDown 0.04s linear 0s 1 normal forwards;
 }
 
 @keyframes moveDown {
-    0.0%{
-    }
-    100%{
+    0.0% {}
+
+    100% {
         transform: translate(0, 11vh);
     }
 }
+
 @keyframes moveUp {
-    0.0%{
+    0.0% {}
+
+    100% {
+        transform: translate(0, -11vh);
     }
-    100%{
+}
+
+.go-up-fast {
+    animation: moveUpFast 0.0002s linear 0s 1 normal forwards;
+}
+
+.go-down-fast {
+    animation: moveDownFast 0.0002s linear 0s 1 normal forwards;
+}
+
+@keyframes moveDownFast {
+    0.0% {}
+
+    100% {
+        transform: translate(0, 11vh);
+    }
+}
+
+@keyframes moveUpFast {
+    0.0% {}
+
+    100% {
         transform: translate(0, -11vh);
     }
 }
