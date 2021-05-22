@@ -71,17 +71,17 @@ body {
 .ROW {
     margin-top: 1vh;
     overflow: hidden;
-    font-size: 2vw;
     text-align: center;
     height: auto;
 }
 
-.ROW:hover .pol, .ROW:hover .eng{
+.ROW:hover .pol,
+.ROW:hover .eng {
     text-overflow: auto;
     overflow: visible;
     white-space: normal;
-      overflow-wrap: break-word;
-  word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .pol {
@@ -103,9 +103,19 @@ body {
     margin-right: 7%;
     width: 200px;
     margin-bottom: 1%;
-    /*transition: white-space 0.5s;
-    -webkit-transition: white-space 0.5s;*/
     /*czemu to działa xD?*/
+}
+
+@media (orientation: landscape) {
+    .ROW {
+        font-size: 2vw;
+    }
+}
+
+@media (orientation: portrait) {
+    .ROW {
+        font-size: 4vw;
+    }
 }
 
 fieldset {
