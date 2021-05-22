@@ -115,6 +115,7 @@ body {
 @media (orientation: portrait) {
     .ROW {
         font-size: 4vw;
+        background: black;
     }
 }
 
