@@ -73,19 +73,40 @@ body {
     overflow: hidden;
     font-size: 1.8em;
     text-align: center;
-    height: 8vh;
-    transition: height 0.5s;
-    -webkit-transition: height 0.5s;
-}
-
-.ROW:hover {
     height: auto;
 }
 
-plenHOVER{
-    color:black;
+.ROW:hover .pol, .ROW:hover .eng{
+    text-overflow: auto;
+    overflow: visible;
+    white-space: normal;
+      overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
+.pol {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 6%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.eng {
+    border-left: 1px gray solid;
+    color: yellow;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 2%;
+    margin-right: 7%;
+    width: 200px;
+    margin-bottom: 1%;
+    /*transition: white-space 0.5s;
+    -webkit-transition: white-space 0.5s;*/
+    /*czemu to działa xD?*/
+}
 
 fieldset {
     border: 1px gray solid;
@@ -101,25 +122,6 @@ legend {
     font-size: 0.5em;
     text-align: right;
     margin-right: 10%;
-}
-
-.pol {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: 6%;
-    margin-right: 2%;
-}
-
-.eng {
-    border-left: 1px gray solid;
-    color: yellow;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: 2%;
-    margin-right: 7%;
-    width: 400px; /*czemu to działa xD?*/
 }
 
 .u1 {
@@ -186,15 +188,11 @@ legend {
 }
 
 ::-webkit-scrollbar-track {
-    /*border: 1px solid #2575aa;*/
-    /*border-radius: 10px;*/
     background: black;
 }
 
 ::-webkit-scrollbar-thumb {
-    /*background: yellowgreen;*/
     background: linear-gradient(125deg, #34495e, #2575aa, #34495e);
-    /*border-radius: 10px;*/
 }
 
 ::-webkit-scrollbar-thumb:hover {

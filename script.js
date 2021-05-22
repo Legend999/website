@@ -97,10 +97,4 @@ $(document).ready(function () {
             }
         }
     }
-    $(".pol").mouseover(function () {
-        console.log("XD");
-        console.log($(this));
-        console.log($(this).find(".pol"));
-        $(this).find(".pol").toggleClass("plenHOVER");
-    });
 });
