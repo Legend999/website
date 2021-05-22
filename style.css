@@ -78,6 +78,11 @@ body {
 fieldset {
     border: 1px gray solid;
     padding: 0;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(6, 49, 107, 1)), url("https://flagcdn.com/120x90/pl.png"), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(6, 49, 107, 1)), url("https://flagcdn.com/120x90/gb.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left, left, right, right;
+    background-size: 35% 120%, 35% 120%, 12% 120%, 12% 120%;
+    background-position-x: -39%, -40%, 101%, 102%;
 }
 
 legend {
@@ -90,19 +95,10 @@ legend {
     height: 20vh;
 }
 
-.pol {
-    background: left no-repeat;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(6, 49, 107, 1)), url("https://flagcdn.com/120x90/pl.png");
-    background-size: 35% 120%;
-    background-position-x: -15%;
-}
+.pol {}
 
 .eng {
     border-left: 1px gray solid;
-    background: right no-repeat;
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.3), rgba(6, 49, 107, 0.9)), url("https://flagcdn.com/120x90/gb.png");
-    background-size: 35% 120%;
-    background-position-x: 111%;
     color: yellow;
 }
 
