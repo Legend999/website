@@ -62,8 +62,8 @@ $(document).ready(function () {
         var result = fuse.search(pattern);
 
         for (let k = 0; k < list.length; ++k)
-                $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
-        
+            $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
+
         for (var i = 0;
             (i < Math.min(40, result.length)) && (tmp_num == num); ++i) {
             let j;
@@ -97,4 +97,10 @@ $(document).ready(function () {
             }
         }
     }
+    $(".pol").mouseover(function () {
+        console.log("XD");
+        console.log($(this));
+        console.log($(this).find(".pol"));
+        $(this).find(".pol").toggleClass("plenHOVER");
+    });
 });
