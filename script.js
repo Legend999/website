@@ -6,7 +6,7 @@ const options = {
     // findAllMatches: false,
     // minMatchCharLength: 1, //mozna ustawic na 2
     // location: 0,
-    threshold: 0.3,
+    threshold: 0.4,
     // distance: 100,
     // useExtendedSearch: false,
     ignoreLocation: true,
@@ -32,7 +32,7 @@ $(document).ready(function () {
             };
             list.push(tmp2);
 
-            $('<div class="row ROW u' + (i + 1) + '"><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</div></div>').insertAfter(".u" + i);
+            $('<fieldset class="row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
         }
         $('<div class="u' + (i + 1) + '"></div>').insertAfter(".u" + i);
         let tmp2 = {
@@ -61,10 +61,14 @@ $(document).ready(function () {
         const fuse = new Fuse(list, options);
         var result = fuse.search(pattern);
 
+        for (let k = 0; k < list.length; ++k)
+                $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
+        
         for (var i = 0;
-            (i < Math.min(4, result.length)) && (tmp_num == num); ++i) {
+            (i < Math.min(40, result.length)) && (tmp_num == num); ++i) {
             let j;
             for (j = 0; list[j]['id'] != result[i]['item']['id']; ++j);
+            $(".u" + (list[j]['value'] + 1)).children(":first").html("Matches: " + Math.round(100 - (result[i]['score'] * 100)) + "%");
             while ((j > 10) && (tmp_num == num)) {
                 $(".u" + list[j]['value']).addClass("go-down-fast");
                 $(".u" + (list[j]['value'] + 1)).addClass("go-up-fast");
@@ -92,6 +96,5 @@ $(document).ready(function () {
                 [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
             }
         }
-        console.log(list);
     }
 });

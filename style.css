@@ -68,12 +68,22 @@ body {
 }
 
 .ROW {
-    border: 1px gray solid;
     margin-top: 1vh;
     overflow: hidden;
     font-size: 1.8em;
     text-align: center;
     height: 10vh;
+}
+
+fieldset {
+    border: 1px gray solid;
+    padding: 0;
+}
+
+legend {
+    font-size: 0.5em;
+    text-align: right;
+    margin-right: 10%;
 }
 
 .ROW:hover {
@@ -102,6 +112,9 @@ body {
     width: 104%;
     margin-left: -2%;
     border-radius: 6px 28px 6px 28px;
+    transform: scale(1.05);
+    z-index: -1;
+    position: relative;
 }
 
 /*animations*/
