@@ -6,7 +6,7 @@ const options = {
     // findAllMatches: false,
     // minMatchCharLength: 1, //mozna ustawic na 2
     // location: 0,
-    threshold: 0.4,
+    threshold: 0.25,
     // distance: 100,
     // useExtendedSearch: false,
     ignoreLocation: true,
@@ -47,6 +47,8 @@ $(document).ready(function () {
     var typingTimer, num = 0;
     var doneTypingInterval = 200;
     $('#search').keydown(function () {
+        $('html,body').scrollTop(0);
+        $('.ROW').addClass('hide');
         clearTimeout(typingTimer);
         ++num;
     });
@@ -58,6 +60,9 @@ $(document).ready(function () {
     async function doneTyping() {
         let tmp_num = num;
         var pattern = $('#search').val();
+        if (pattern == "") {
+            $('.ROW').removeClass('hide');
+        }
         const fuse = new Fuse(list, options);
         var result = fuse.search(pattern);
 
@@ -65,11 +70,11 @@ $(document).ready(function () {
             $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
 
         for (var i = 0;
-            (i < Math.min(40, result.length)) && (tmp_num == num); ++i) {
+            (i < Math.min(10, result.length)) && (tmp_num == num); ++i) {
             let j;
             for (j = 0; list[j]['id'] != result[i]['item']['id']; ++j);
             $(".u" + (list[j]['value'] + 1)).children(":first").html("Matches: " + Math.round(100 - (result[i]['score'] * 100)) + "%");
-            while ((j > 10) && (tmp_num == num)) {
+            /*while ((j > 10) && (tmp_num == num)) {
                 $(".u" + list[j]['value']).addClass("go-down-fast");
                 $(".u" + (list[j]['value'] + 1)).addClass("go-up-fast");
                 await new Promise(r => setTimeout(r, 2));
@@ -81,20 +86,26 @@ $(document).ready(function () {
                 $(".u" + list[j + 2]['value']).removeClass("go-up-fast");
                 [list[j], list[j + 1]] = [list[j + 1], list[j]];
                 [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
-            }
+            }*/
             while ((j > i) && (tmp_num == num)) {
-                $(".u" + list[j]['value']).addClass("go-down");
+                /*$(".u" + list[j]['value']).addClass("go-down");
                 $(".u" + (list[j]['value'] + 1)).addClass("go-up");
-                await new Promise(r => setTimeout(r, 40));
+                await new Promise(r => setTimeout(r, 40));*/
                 --j;
                 var tmp = $(".u" + list[j + 2]['value']).html();
                 $(".u" + list[j + 2]['value']).html($(".u" + list[j + 1]['value']).html());
                 $(".u" + list[j + 1]['value']).html(tmp);
-                $(".u" + list[j + 1]['value']).removeClass("go-down");
-                $(".u" + list[j + 2]['value']).removeClass("go-up");
+                /*$(".u" + list[j + 1]['value']).removeClass("go-down");
+                $(".u" + list[j + 2]['value']).removeClass("go-up");*/
                 [list[j], list[j + 1]] = [list[j + 1], list[j]];
                 [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
             }
+            $(".u" + (list[j]['value'] + 1)).removeClass('hide');
+            $(".u" + (list[j]['value'] + 1)).addClass('slide');
+            setTimeout(function () {
+                $(".u" + (list[j]['value'] + 1)).removeClass('slide');
+            }, 300);
+            await new Promise(r => setTimeout(r, 40));
         }
     }
 });
