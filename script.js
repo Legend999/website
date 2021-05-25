@@ -46,15 +46,22 @@ $(document).ready(function () {
 
     var typingTimer, num = 0;
     var doneTypingInterval = 200;
+    var lastpattern = "";
     $('#search').keydown(function () {
-        $('html,body').scrollTop(0);
-        $('.ROW').addClass('hide');
         clearTimeout(typingTimer);
         ++num;
     });
     $('#search').keyup(function () {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        var pattern = $('#search').val();
+        if (lastpattern != pattern) {
+            console.log(pattern);
+            console.log(lastpattern);
+            $('html,body').scrollTop(0);
+            $('.ROW').addClass('hide');
+            $('.loader').removeAttr('style').removeClass('hide').addClass('unHide');
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
     });
 
     async function doneTyping() {
@@ -63,9 +70,13 @@ $(document).ready(function () {
         if (pattern == "") {
             $('.ROW').removeClass('hide');
         }
+        if (lastpattern == pattern)
+            return;
+        lastpattern = pattern;
         const fuse = new Fuse(list, options);
         var result = fuse.search(pattern);
 
+        $('.loader').removeClass('unHide').addClass('hide');
         for (let k = 0; k < list.length; ++k)
             $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
 
