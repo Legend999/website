@@ -14,6 +14,15 @@ const options = {
     keys: ['pl', 'en']
 };
 
+if (localStorage.getItem('dark') === '1') {
+    $('body').css('background', 'black');
+    $('fieldset').css('background-image', "linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/pl.png), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/gb.png)");
+    $('.pol').css('color', 'rgb(52 130 52)');
+    $('.u1').css('border', '2px #30f000 solid');
+    $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
+    $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
+}
+
 $(document).ready(function () {
     $("#search").focus();
     var list = [];
@@ -47,16 +56,20 @@ $(document).ready(function () {
     $('#switch').change(function () {
         if (this.checked) {
             $('body').css('background', 'black');
-            $('fieldset').css('background-image',  "linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/pl.png), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/gb.png)");
-            $('.pol').css('color','rgb(52 130 52)');
+            $('fieldset').css('background-image', "linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/pl.png), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/gb.png)");
+            $('.pol').css('color', 'rgb(52 130 52)');
             $('.u1').css('border', '2px #30f000 solid');
-            $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 80%, rgba(6, 2, 69, 0) 100%)');
+            $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
+            $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
+            localStorage.setItem('dark', JSON.stringify('1'));
         } else {
             $('body').removeAttr('style');
             $('fieldset').removeAttr('style');
             $('.pol').removeAttr('style');
             $('.u1').removeAttr('style');
             $('#fade-head').removeAttr('style');
+            $('#fade-foot').removeAttr('style');
+            localStorage.setItem('dark', JSON.stringify('0'));
         }
     });
 

@@ -37,17 +37,11 @@ body {
 
 #fade-head {
     height: 20%;
-    background: -webkit-linear-gradient(rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
-    background-image: -moz-linear-gradient(
-            /*firefox*/
-            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
-    background-image: -o-linear-gradient(
-            /*opera*/
-            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
-    background-image: linear-gradient(rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
-    background-image: -ms-linear-gradient(
-            /*microsoft ie*/
-            rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background: -webkit-linear-gradient(rgb(4 20 68) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background-image: -moz-linear-gradient(rgb(4 20 68) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background-image: -o-linear-gradient(rgb(4 20 68) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background-image: linear-gradient(rgb(4 20 68) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
+    background-image: -ms-linear-gradient(rgb(4 20 68) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
     z-index: 2;
 }
 
@@ -155,6 +149,11 @@ legend {
     text-align: right;
     right: 0;
     top: 10%;
+}
+
+.form-check-input:checked {
+    background-color: #000000;
+    border-color: gray;
 }
 
 /*animations*/
