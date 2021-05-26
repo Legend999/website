@@ -44,6 +44,22 @@ $(document).ready(function () {
         list.push(tmp2);
     });
 
+    $('#switch').change(function () {
+        if (this.checked) {
+            $('body').css('background', 'black');
+            $('fieldset').css('background-image',  "linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/pl.png), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/gb.png)");
+            $('.pol').css('color','rgb(52 130 52)');
+            $('.u1').css('border', '2px #30f000 solid');
+            $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 80%, rgba(6, 2, 69, 0) 100%)');
+        } else {
+            $('body').removeAttr('style');
+            $('fieldset').removeAttr('style');
+            $('.pol').removeAttr('style');
+            $('.u1').removeAttr('style');
+            $('#fade-head').removeAttr('style');
+        }
+    });
+
     var typingTimer, num = 0;
     var doneTypingInterval = 200;
     var lastpattern = "";
@@ -54,8 +70,6 @@ $(document).ready(function () {
     $('#search').keyup(function () {
         var pattern = $('#search').val();
         if (lastpattern != pattern) {
-            console.log(pattern);
-            console.log(lastpattern);
             $('html,body').scrollTop(0);
             $('.ROW').addClass('hide');
             $('.loader').removeAttr('style').removeClass('hide').addClass('unHide');

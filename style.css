@@ -12,15 +12,16 @@ body {
     z-index: 2000;
     position: sticky;
     position: -webkit-sticky;
-    top: 0%;
+    top: 2%;
+    width: 100%;
 }
 
 .searchbox {
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     z-index: 2000;
     position: sticky;
     position: -webkit-sticky;
-    top: 5%;
+    top: 8%;
 }
 
 #search {
@@ -31,10 +32,11 @@ body {
 #fade-head {
     position: fixed;
     width: 100%;
+    transition: all 0.5s;
 }
 
 #fade-head {
-    height: 15%;
+    height: 20%;
     background: -webkit-linear-gradient(rgba(6, 29, 99, 1) 0%, rgba(6, 49, 107, 1) 80%, rgba(6, 2, 69, 0) 100%);
     background-image: -moz-linear-gradient(
             /*firefox*/
@@ -88,6 +90,7 @@ body {
     margin-left: 6%;
     margin-right: 2%;
     margin-bottom: 1%;
+    transition: all 0.5s;
 }
 
 .eng {
@@ -112,14 +115,13 @@ body {
 
 @media (orientation: landscape) {
     .ROW {
-        font-size: 1.7vw;
+        font-size: 1.3vw;
     }
 }
 
 @media (orientation: portrait) {
     .ROW {
         font-size: 4vw;
-        /*mozna usunac boczne col*/
     }
 }
 
@@ -145,6 +147,14 @@ legend {
     border-radius: 6px 28px 6px 28px;
     transform: scale(1.05);
     position: relative;
+}
+
+.form-switch {
+    position: absolute;
+    width: auto;
+    text-align: right;
+    right: 0;
+    top: 10%;
 }
 
 /*animations*/
@@ -203,9 +213,10 @@ legend {
 }
 
 @keyframes unHide {
-    0%{
+    0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
@@ -251,6 +262,17 @@ legend {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(125deg, #2575aa, #34495e, #2575aa);
 }
+
+/* thanks to https://codepen.io/comehope/pen/KBxYZg under MIT license */
+/*
+Copyright <2021> <Comehope>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 .loader {
     width: 16em;
