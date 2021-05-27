@@ -16,6 +16,10 @@ body {
     width: 100%;
 }
 
+h2{
+    font-family: Lobster;
+}
+
 .searchbox {
     margin-bottom: 3%;
     z-index: 2000;
