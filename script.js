@@ -15,6 +15,12 @@ const options = {
 };
 
 $(document).ready(function () {
+    if (localStorage.getItem('dark') != null) {
+        $('#switch').prop('checked', true);
+        $('body').css('background', 'black');
+        $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
+        $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
+    }
     $("#search").focus();
     var list = [];
     $.get("dictionary.umg", function (response) {
@@ -31,7 +37,7 @@ $(document).ready(function () {
                 "value": i
             };
             list.push(tmp2);
-            if(i&1)
+            if (i & 1)
                 $('<fieldset class="appear_left row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
             else
                 $('<fieldset class="appear_right row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
@@ -45,13 +51,11 @@ $(document).ready(function () {
         };
         list.push(tmp2);
         if (localStorage.getItem('dark') != null) {
-            $('#switch').prop('checked', true);
-            $('body').css('background', 'black');
+
             $('fieldset').css('background-image', "linear-gradient(to right, rgba(255, 255, 255, 0) 69%, rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/pl.png), linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1)), url(https://flagcdn.com/120x90/gb.png)");
             $('.pol').css('color', 'rgb(52 130 52)');
             $('.u1').css('border', '2px #30f000 solid');
-            $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
-            $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
+
         }
     });
     setTimeout(function () {
