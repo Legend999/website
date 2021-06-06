@@ -6,11 +6,11 @@ const options = {
     // findAllMatches: false,
     // minMatchCharLength: 1, //mozna ustawic na 2
     // location: 0,
-    threshold: 0.25,
+    threshold: 0.1,
     // distance: 100,
     // useExtendedSearch: false,
     ignoreLocation: true,
-    // ignoreFieldNorm: false,
+    ignoreFieldNorm: true,
     keys: ['pl', 'en']
 };
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
     var list = [];
     $.get("dictionary.umg", function (response) {
         var file = response;
-        var splitted = file.split("\n"); //splitted into an array of substring
+        var splitted = file.split("\n");
         for (var i = 0; i < splitted.length; ++i) {
             if (splitted[i] == "")
                 break;
@@ -31,8 +31,10 @@ $(document).ready(function () {
                 "value": i
             };
             list.push(tmp2);
-
-            $('<fieldset class="row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
+            if(i&1)
+                $('<fieldset class="appear_left row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
+            else
+                $('<fieldset class="appear_right row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
         }
         $('<div class="u' + (i + 1) + '"></div>').insertAfter(".u" + i);
         let tmp2 = {
@@ -51,8 +53,11 @@ $(document).ready(function () {
             $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
             $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
         }
-
     });
+    setTimeout(function () {
+        $(".ROW").removeClass('appear_left');
+        $(".ROW").removeClass('appear_right');
+    }, 800);
 
     $('#switch').change(function () {
         if (this.checked) {
@@ -85,8 +90,12 @@ $(document).ready(function () {
         var pattern = $('#search').val();
         if (lastpattern != pattern) {
             $('html,body').scrollTop(0);
-            $('.ROW').addClass('hide');
             $('.loader').removeAttr('style').removeClass('hide').addClass('unHide');
+            $('.ROW').addClass('hide');
+            setTimeout(function () {
+                $('.hide').addClass('disp');
+                $('.loader').removeClass('disp');
+            }, 300);
             clearTimeout(typingTimer);
             typingTimer = setTimeout(doneTyping, doneTypingInterval);
         }
@@ -96,7 +105,7 @@ $(document).ready(function () {
         let tmp_num = num;
         var pattern = $('#search').val();
         if (pattern == "") {
-            $('.ROW').removeClass('hide');
+            $('.ROW').removeClass('hide').removeClass('disp');
         }
         if (lastpattern == pattern)
             return;
@@ -109,7 +118,7 @@ $(document).ready(function () {
             $(".u" + (list[k]['value'] + 1)).children(":first").html("Matches: -%");
 
         for (var i = 0;
-            (i < Math.min(10, result.length)) && (tmp_num == num); ++i) {
+            (i < Math.min(50, result.length)) && (tmp_num == num); ++i) {
             let j;
             for (j = 0; list[j]['id'] != result[i]['item']['id']; ++j);
             $(".u" + (list[j]['value'] + 1)).children(":first").html("Matches: " + Math.round(100 - (result[i]['score'] * 100)) + "%");
@@ -139,7 +148,7 @@ $(document).ready(function () {
                 [list[j], list[j + 1]] = [list[j + 1], list[j]];
                 [list[j]['value'], list[j + 1]['value']] = [list[j + 1]['value'], list[j]['value']];
             }
-            $(".u" + (list[j]['value'] + 1)).removeClass('hide');
+            $(".u" + (list[j]['value'] + 1)).removeClass('hide').removeClass('disp');
             $(".u" + (list[j]['value'] + 1)).addClass('slide');
             setTimeout(function () {
                 $(".u" + (list[j]['value'] + 1)).removeClass('slide');

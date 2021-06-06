@@ -5,6 +5,7 @@ body {
     overflow-y: scroll;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 .header {
@@ -37,6 +38,7 @@ h2{
     position: fixed;
     width: 100%;
     transition: all 0.5s;
+    z-index: 2;
 }
 
 #fade-head {
@@ -160,26 +162,93 @@ legend {
     border-color: gray;
 }
 
+.disp {
+    display: none;
+}
+
 /*animations*/
 
+.appear_left {
+    animation: appearL 0.3s ease-out 0s 1 normal forwards;
+    position: relative;
+    z-index: 1;
+}
+
+.appear_right {
+    animation: appearR 0.3s ease-out 0s 1 normal forwards;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes appearL {
+    0% {
+        opacity: 0;
+        transform: translate(-20vw, 0);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes appearR {
+    0% {
+        opacity: 0;
+        transform: translate(20vw, 0);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .hide {
-    animation: hideMe 0.3s linear 0s 1 normal forwards;
+    animation: hideMe .3s linear 0s 1 normal forwards;
 }
 
 .unHide {
     animation: unHide .3s linear 0s 1 normal forwards;
 }
 
-.go-up {
+@keyframes hideMe {
+    0% {
+        display: block; 
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes unHide {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.slide {
+    animation: _slide .3s ease-out 0s 1 normal forwards;
+}
+
+@keyframes _slide {
+    0.0% {
+        transform: translate(0, 50vh);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+/*.go-up {
     animation: moveUp 0.04s linear 0s 1 normal forwards;
 }
 
 .go-down {
     animation: moveDown 0.04s linear 0s 1 normal forwards;
-}
-
-.slide {
-    animation: _slide .3s ease-out 0s 1 normal forwards;
 }
 
 @keyframes moveDown {
@@ -196,36 +265,9 @@ legend {
     100% {
         transform: translate(0, -11vh);
     }
-}
+}*/
 
-@keyframes _slide {
-    0.0% {
-        transform: translate(0, 50vh);
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 0.7;
-    }
-}
-
-@keyframes hideMe {
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes unHide {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.go-up-fast {
+/*.go-up-fast {
     animation: moveUpFast 0.0002s linear 0s 1 normal forwards;
 }
 
@@ -247,7 +289,7 @@ legend {
     100% {
         transform: translate(0, -11vh);
     }
-}
+}*/
 
 ::-webkit-scrollbar {
     width: 12px;
