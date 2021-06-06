@@ -19,7 +19,7 @@ $(document).ready(function () {
     var list = [];
     $.get("dictionary.umg", function (response) {
         var file = response;
-        var splitted = file.split("\n"); //splitted into an array of substring
+        var splitted = file.split("\n");
         for (var i = 0; i < splitted.length; ++i) {
             if (splitted[i] == "")
                 break;
@@ -31,8 +31,10 @@ $(document).ready(function () {
                 "value": i
             };
             list.push(tmp2);
-
-            $('<fieldset class="row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
+            if(i&1)
+                $('<fieldset class="appear_left row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
+            else
+                $('<fieldset class="appear_right row ROW u' + (i + 1) + '"><legend>Matches: -%</legend><div class="col pol">' + tmp[0] + '</div><div class="col eng">' + tmp[1] + '</fieldset></div>').insertAfter(".u" + i);
         }
         $('<div class="u' + (i + 1) + '"></div>').insertAfter(".u" + i);
         let tmp2 = {
@@ -51,8 +53,11 @@ $(document).ready(function () {
             $('#fade-head').css('background-image', 'linear-gradient(rgb(6 99 13) 0%, rgb(0 0 0) 72%, rgba(6, 2, 69, 0) 100%)');
             $('#fade-foot').css('background-image', 'linear-gradient(rgba(6, 2, 69, 0) 0%, rgba(6, 99, 13,0.15) 100%)');
         }
-
     });
+    setTimeout(function () {
+        $(".ROW").removeClass('appear_left');
+        $(".ROW").removeClass('appear_right');
+    }, 800);
 
     $('#switch').change(function () {
         if (this.checked) {
