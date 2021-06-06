@@ -162,6 +162,10 @@ legend {
 
 /*animations*/
 
+.disp {
+    display: none;
+}
+
 .hide {
     animation: hideMe 0.3s linear 0s 1 normal forwards;
 }
@@ -170,16 +174,31 @@ legend {
     animation: unHide .3s linear 0s 1 normal forwards;
 }
 
-.go-up {
+@keyframes hideMe {
+    0% {
+        display: block; 
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes unHide {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/*.go-up {
     animation: moveUp 0.04s linear 0s 1 normal forwards;
 }
 
 .go-down {
     animation: moveDown 0.04s linear 0s 1 normal forwards;
-}
-
-.slide {
-    animation: _slide .3s ease-out 0s 1 normal forwards;
 }
 
 @keyframes moveDown {
@@ -196,6 +215,10 @@ legend {
     100% {
         transform: translate(0, -11vh);
     }
+}*/
+
+.slide {
+    animation: _slide .3s ease-out 0s 1 normal forwards;
 }
 
 @keyframes _slide {
@@ -209,23 +232,7 @@ legend {
     }
 }
 
-@keyframes hideMe {
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes unHide {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.go-up-fast {
+/*.go-up-fast {
     animation: moveUpFast 0.0002s linear 0s 1 normal forwards;
 }
 
@@ -247,7 +254,7 @@ legend {
     100% {
         transform: translate(0, -11vh);
     }
-}
+}*/
 
 ::-webkit-scrollbar {
     width: 12px;
